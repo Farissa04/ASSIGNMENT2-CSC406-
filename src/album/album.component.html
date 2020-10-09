@@ -1,0 +1,52 @@
+<link
+  href="https://fonts.googleapis.com/css?family=Boogaloo"
+  rel="stylesheet"
+/>
+
+<br />
+
+<div *ngIf="album">
+  <div class="row">
+    <div class="column">
+      <img [src]="album.images[0].url" class="center" alt="" /> <!-- function keluarkan album image -->
+    </div>
+    <div class="column">
+      <button
+        class="button button2"
+        (click)="viewInSpotify(album.external_urls.spotify)"    
+      >
+      <!-- source yg functionkan button view In Spotify/ lead to Spotify Web/App-->
+        View In Spotify
+      </button>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<!-- table to display music track name & preview song-->
+<table class="w3-table-all">
+  <tr class="w3-black">
+    <th>
+      Name of Song
+    </th>
+    <th>Preview Song</th>
+  </tr>
+
+  <!-- creating link to function the preview track link/ bawak ke music preview-->
+  <ng-container *ngIf="tracksInfo">
+    <tr *ngFor="let item of tracksInfo.items">
+      <td>
+        <p>{{ item.name }}</p>            
+      </td>
+      <td>
+        <a
+          *ngIf="item.preview_url !== null"
+          [href]="item.preview_url"       
+          target="_blank"
+          >Preview Track</a
+        >
+      </td>
+    </tr>
+  </ng-container>
+
